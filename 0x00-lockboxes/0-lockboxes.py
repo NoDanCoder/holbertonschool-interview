@@ -8,6 +8,8 @@ def openBox(boxes, box, memo):
     """
     try:
         keys = boxes[box]
+        if type(keys) != list:
+            return set()
         memo.add(box)
     except IndexError:
         return
