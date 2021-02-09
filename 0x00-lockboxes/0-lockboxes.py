@@ -2,6 +2,7 @@
 
 """ lockboxes module """
 
+
 def openBox(boxes, box, memo):
     """ itertate recursively truough list of boxes
         and save them on memo set
@@ -15,7 +16,7 @@ def openBox(boxes, box, memo):
         memo.add(box)
     except IndexError:
         return memo
-        
+
     for key in keys:
         if type(key) != int:
             memo.add(-1)
