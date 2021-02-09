@@ -8,20 +8,9 @@ def openBox(boxes, box, memo):
         and save them on memo set
     """
 
-    try:
-        keys = boxes[box]
-        if type(keys) != list:
-            memo.add(-1)
-            return memo
-        memo.add(box)
-    except IndexError:
-        return memo
-
-    for key in keys:
-        if type(key) != int:
-            memo.add(-1)
-            return memo
-        if key not in memo:
+    for key in boxes[box]:
+        if key not in memo and key < len(boxes):
+            memo.add(key)
             openBox(boxes, key, memo)
 
     return memo
@@ -31,7 +20,8 @@ def canUnlockAll(boxes):
     """ check box is valid then start recursive function to verify
         if all list of boxes are opened
     """
-    if type(boxes) is list and boxes != []:
-        openedBoxes = openBox(boxes, 0, set())
-        return len(boxes) == len(openedBoxes) and -1 not in openedBoxes
-    return False
+
+    if not boxes:
+        return False
+    openedBoxes = openBox(boxes, 0, {0})
+    return len(boxes) == len(openedBoxes)
